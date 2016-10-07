@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   belongs_to :company
 
   has_many :addresses
+  has_many :orders
 
   def prefers_email?
     notification_preference == 'email'

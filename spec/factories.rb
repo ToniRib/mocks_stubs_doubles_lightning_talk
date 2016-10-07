@@ -1,10 +1,4 @@
 FactoryGirl.define do
-  factory :item do
-    name "Kitten Tank Top"
-    description "The cutest of all tank tops you could ever own!"
-    price 19.99
-  end
-
   factory :address do
     city "Los Angeles"
     state "California"
@@ -35,6 +29,18 @@ FactoryGirl.define do
         create(:billing_address, user: user)
       end
     end
+  end
+
+  factory :order do
+    shipped_on "2016-10-06 20:48:13"
+    user
+    status "ordered"
+  end
+
+  factory :item do
+    name "Kitten Tank Top"
+    description "The cutest of all tank tops you could ever own!"
+    price 19.99
   end
 
   factory :company do
