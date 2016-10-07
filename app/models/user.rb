@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :addresses
   has_many :orders
+  has_many :items, through: :order_items
 
   def prefers_email?
     notification_preference == 'email'
