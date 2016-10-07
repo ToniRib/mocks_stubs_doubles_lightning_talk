@@ -1,4 +1,14 @@
 FactoryGirl.define do
+  factory :address do
+    city "Los Angeles"
+    state "California"
+    country "United States"
+    street_address "6122 Fluffy Ave"
+    zipcode "91662"
+    type_of "shipping"
+    user
+  end
+
   factory :user do
     first_name "Toni"
     last_name "Rib"
