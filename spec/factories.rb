@@ -1,4 +1,11 @@
 FactoryGirl.define do
+  factory :user do
+    first_name "Toni"
+    last_name "Rib"
+    email "toni@example.com"
+    company
+  end
+
   factory :company do
     name "Cat Fantastic"
     city "Denver"
