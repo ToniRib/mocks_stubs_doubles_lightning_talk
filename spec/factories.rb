@@ -1,4 +1,10 @@
 FactoryGirl.define do
+  factory :item do
+    name "Kitten Tank Top"
+    description "The cutest of all tank tops you could ever own!"
+    price 19.99
+  end
+
   factory :address do
     city "Los Angeles"
     state "California"
