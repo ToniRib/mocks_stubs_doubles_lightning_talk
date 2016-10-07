@@ -7,6 +7,14 @@ FactoryGirl.define do
     zipcode "91662"
     type_of "shipping"
     user
+
+    factory :shipping_address do
+      type_of "shipping"
+    end
+
+    factory :billing_address do
+      type_of "billing"
+    end
   end
 
   factory :user do
@@ -14,6 +22,13 @@ FactoryGirl.define do
     last_name "Rib"
     email "toni@example.com"
     company
+
+    factory :user_with_addresses do
+      after(:create) do |user, _|
+        create(:shipping_address, user: user)
+        create(:billing_address, user: user)
+      end
+    end
   end
 
   factory :company do
