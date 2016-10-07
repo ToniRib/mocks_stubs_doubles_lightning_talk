@@ -20,4 +20,12 @@ class User < ActiveRecord::Base
   def prefers_phone_call?
     notification_preference == 'phone'
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+  def shipping_address
+    addresses.find_by(type_of: 'shipping')
+  end
 end
