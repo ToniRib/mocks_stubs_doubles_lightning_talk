@@ -6,12 +6,45 @@ describe(NotifyUserOfShipment) do
 
   describe '#send_notification' do
     context 'when the user prefers email' do
-      it 'sends the user an email notification' do
+      before do
         user.update_attribute(:notification_preference, 'email')
+      end
 
-        expect { NotifyUserOfShipment.new(order).send_notification }
-          .to change { ActionMailer::Base.deliveries.count }
-          .by(1)
+      it 'sends the user an email notification' do
+        delivery_count = ActionMailer::Base.deliveries.count
+
+        NotifyUserOfShipment.new(order).send_notification
+
+        expect(ActionMailer::Base.deliveries.count).to eq delivery_count + 1
+      end
+
+      it 'sends the correct email' do
+        NotifyUserOfShipment.new(order).send_notification
+
+        mail = ActionMailer::Base.deliveries.last
+
+        expect(mail.to).to include user.email
+        expect(mail.subject).to eq 'Your order has shipped!'
+      end
+    end
+
+    context 'when the user prefers snail mail' do
+      before do
+        user.update_attribute(:notification_preference, 'mail')
+      end
+
+      it 'prints a shipping label' do
+        NotifyUserOfShipment.new(order).send_notification
+
+        expect(order.label_status).to eq 'printed'
+      end
+
+      it 'sends a notification to the shipping team' do
+        delivery_count = ActionMailer::Base.deliveries.count
+
+        NotifyUserOfShipment.new(order).send_notification
+
+        expect(ActionMailer::Base.deliveries.count).to eq delivery_count + 1
       end
     end
   end
