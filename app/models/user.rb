@@ -26,6 +26,6 @@ class User < ActiveRecord::Base
   end
 
   def shipping_address
-    addresses.find_by(type_of: 'shipping')
+    addresses.find_by(type_of: 'shipping').to_s
   end
 end
