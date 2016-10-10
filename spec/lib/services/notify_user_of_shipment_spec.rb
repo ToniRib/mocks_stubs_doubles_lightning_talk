@@ -46,6 +46,16 @@ describe(NotifyUserOfShipment) do
 
         expect(ActionMailer::Base.deliveries.count).to eq delivery_count + 1
       end
+
+      it 'sends the correct email' do
+        NotifyUserOfShipment.new(order).send_notification
+
+        mail = ActionMailer::Base.deliveries.last
+
+        expect(mail.to).to include 'shipping_team@shipit.com'
+        expect(mail.subject).to eq 'NOTICE: Order ready to be shipped!'
+      end
+    end
     end
   end
 end
