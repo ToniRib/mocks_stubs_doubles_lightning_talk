@@ -7,10 +7,10 @@ class NotificationMailer < ActionMailer::Base
          from:    'shipping_notifier@shipit.com'
   end
 
-  def notify_shipping_of_pending_delivery(order:)
+  def notify_shipping_letter_is_ready(order:)
     @order = order
 
-    mail subject: 'NOTICE: Order ready to be shipped!',
+    mail subject: 'NOTICE: Notification Letter Ready For Mailing!',
          to:      'shipping_team@shipit.com',
          from:    'shipping_notifier@shipit.com'
   end
