@@ -14,10 +14,11 @@ class NotifyViaSnailMail
 
   def print_shipping_label
     Printer.print_shipping_label(name: user.full_name, address: user.shipping_address)
+    order.update_attribute(:label_status, 'printed')
   end
 
   def send_notification_to_shipping_team
-    TeamNotifier.notify_shipping_of_pending_delivery(order: order)
+    NotificationMailer.notify_shipping_of_pending_delivery(order: order).deliver_now
   end
 
   def user

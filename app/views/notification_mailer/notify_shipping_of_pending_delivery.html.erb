@@ -1,0 +1,21 @@
+<h1>There is an order waiting to be shipped!</h1>
+
+<p>
+  The shipping label has been printed for <%= @order.user.full_name %>! Please package the following items, apply the label, and schedule a UPS pickup ASAP!
+</p>
+
+<h3>Items</h3>
+<ul>
+  <% @order.items.each do |item| %>
+      <li>
+        <%= item.name %>
+        <br>
+        <%= item.description %>
+      </li>
+  <% end %>
+</ul>
+
+<h3>Shipping Address</h3>
+<p>
+  <%= @order.shipping_address %>
+</p>
