@@ -4,6 +4,6 @@ class NotifyViaEmail
   end
 
   def call
-    NoficationMailer.send_shipment_email(order: @order)
+    NotificationMailer.send_shipment_email(order: @order).deliver_now
   end
 end
