@@ -56,6 +56,17 @@ describe(NotifyUserOfShipment) do
         expect(mail.subject).to eq 'NOTICE: Order ready to be shipped!'
       end
     end
+
+    context 'when the user prefers a text' do
+      before do
+        user.update_attribute(:notification_preference, 'text')
+      end
+
+      it 'sends a text via Twilio to the user' do
+        NotifyUserOfShipment.new(order).send_notification
+
+        expect(order.texted_at).to eq Date.today
+      end
     end
   end
 end
