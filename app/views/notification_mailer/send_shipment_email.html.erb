@@ -1,0 +1,21 @@
+<h1>Your order has shipped!</h1>
+
+<p>
+  Hi, <%= @order.user.full_name %>, we just wanted to let you know that your order with the following items is on it's way!
+</p>
+
+<h3>Items</h3>
+<ul>
+  <% @order.items.each do |item| %>
+    <li>
+      <%= item.name %>
+      <br>
+      <%= item.description %>
+    </li>
+  <% end %>
+</ul>
+
+<h3>Shipping Address</h3>
+<p>
+  <%= @order.shipping_address %>
+</p>
