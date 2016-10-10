@@ -10,8 +10,6 @@ class NotifyUserOfShipment
       NotifyViaSnailMail.new(order).call
     elsif user.prefers_text?
       NotifyViaText.new(order).call
-    elsif user.prefers_phone_call?
-      NotifyViaPhoneCall.new(order).call
     end
   end
 

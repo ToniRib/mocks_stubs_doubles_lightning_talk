@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
 
   has_many :addresses
   has_many :orders
-  has_many :items, through: :order_items
 
   def prefers_email?
     notification_preference == 'email'
@@ -15,10 +14,6 @@ class User < ActiveRecord::Base
 
   def prefers_text?
     notification_preference == 'text'
-  end
-
-  def prefers_phone_call?
-    notification_preference == 'phone'
   end
 
   def full_name
